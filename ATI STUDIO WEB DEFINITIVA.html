@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes" />
+  <title>ATI Studio | Agencia de Marketing Digital en Panamá</title>
+  <meta name="description" content="ATI Studio es la agencia de marketing digital más completa de Panamá. Creamos páginas web, gestionamos redes sociales, automatizaciones y Google Ads para impulsar tu marca." />
+  <meta name="keywords" content="marketing digital, agencia Panamá, desarrollo web, branding, diseño web, redes sociales, automatizaciones, Google Ads" />
+  <meta name="author" content="ATI Studio" />
+  <meta name="theme-color" content="#0057ff" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.atistudio.com/" />
+  <meta property="og:title" content="ATI Studio | Agencia de Marketing Digital en Panamá" />
+  <meta property="og:description" content="Impulsa tu presencia. Genera impacto digital. Tu marca merece estar en todos los entornos digitales." />
+  <meta property="og:image" content="https://via.placeholder.com/1200x630/0057ff/ffffff?text=ATI+Studio" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://www.atistudio.com/" />
+  <meta property="twitter:title" content="ATI Studio | Agencia de Marketing Digital" />
+  <meta property="twitter:description" content="Impulsa tu presencia. Genera impacto digital." />
+  <meta property="twitter:image" content="https://via.placeholder.com/1200x630/0057ff/ffffff?text=ATI+Studio" />
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230057ff'/%3E%3Ctext x='50' y='70' font-size='60' text-anchor='middle' fill='white'%3EAT%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #080c1a;
+      color: #f0f4ff;
+      overflow-x: hidden;
+      width: 100%;
+      position: relative;
+    }
+
+    :root {
+      --black: #03050d;
+      --dark: #080c1a;
+      --dark2: #0d1226;
+      --blue: #0057ff;
+      --blue-mid: #0044cc;
+      --blue-glow: rgba(0, 87, 255, 0.35);
+      --blue-dim: rgba(0, 87, 255, 0.12);
+      --cyan: #00d4ff;
+      --silver: #a8b4cc;
+      --white: #f0f4ff;
+      --text-muted: #8a99b5;
+      --card: rgba(13, 18, 38, 0.85);
+      --border: rgba(0, 87, 255, 0.3);
+      --border-light: rgba(168, 180, 204, 0.1);
+      --danger: #ff3366;
+      --success: #00ff88;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'Outfit', sans-serif;
+      --font-mono: 'Space Mono', monospace;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      background: rgba(8, 12, 26, 0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      letter-spacing: 0.12em;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    #menu-btn {
+      background: none;
+      border: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    #menu-btn:hover { background: var(--blue-dim); }
+    #menu-btn span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-origin: center;
+    }
+    #menu-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    #menu-btn.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    #menu-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    #overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 5, 13, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: 900;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.35s, visibility 0.35s;
+    }
+    #overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    #drawer {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      bottom: 0;
+      width: min(280px, 75vw);
+      background: var(--dark2);
+      border-right: 1px solid var(--border);
+      z-index: 950;
+      transform: translateX(-100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 2rem 1.2rem;
+      overflow-y: auto;
+      box-shadow: 2px 0 20px rgba(0,0,0,0.3);
+    }
+    #drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer-logo {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .drawer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .drawer-nav a {
+      padding: 0.8rem 0.8rem;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--silver);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: all var(--transition);
+      text-decoration: none;
+    }
+    .drawer-nav a:hover {
+      color: var(--white);
+      background: var(--blue-dim);
+      transform: translateX(6px);
+    }
+
+    /* ===== SOCIAL FLOAT ===== */
+    .social-float {
+      position: fixed;
+      right: 0.8rem;
+      bottom: 1.5rem;
+      z-index: 500;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .social-float a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(13, 18, 38, 0.9);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+      backdrop-filter: blur(8px);
+      text-decoration: none;
+    }
+    .social-float a:hover {
+      background: var(--blue);
+      transform: scale(1.1) translateY(-3px);
+    }
+    .social-float svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--white);
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 1.2rem 3rem;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,87,255,0.15) 0%, transparent 70%),
+                  radial-gradient(ellipse 50% 40% at 80% 80%, rgba(0,212,255,0.08) 0%, transparent 60%),
+                  var(--black);
+      width: 100%;
+    }
+    
+    .shape {
+      position: absolute;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      opacity: 0.05;
+      pointer-events: none;
+    }
+    .shape-1 {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      top: -100px;
+      left: -100px;
+      animation: floatShape 20s ease-in-out infinite;
+    }
+    .shape-2 {
+      width: 150px;
+      height: 150px;
+      border-radius: 30px;
+      bottom: -50px;
+      right: -50px;
+      transform: rotate(45deg);
+      animation: floatShape 15s ease-in-out infinite reverse;
+    }
+    @keyframes floatShape {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(15px, 15px) rotate(10deg); }
+    }
+    
+    .hero-grid {
+      max-width: 100%;
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hero-content {
+      text-align: center;
+    }
+    
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--cyan);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      flex: 0 0 30px;
+      height: 1px;
+      background: var(--cyan);
+    }
+    .hero-eyebrow::after {
+      content: '';
+      flex: 0 0 30px;
+      height: 1px;
+      background: var(--cyan);
+    }
+    
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 10vw, 5rem);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    
+    .hero-title .highlight {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--cyan) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .rotating-text {
+      font-size: 1.2rem;
+      color: var(--cyan);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    
+    .hero-slogan {
+      font-size: 0.95rem;
+      color: var(--silver);
+      line-height: 1.6;
+      max-width: 100%;
+      margin-bottom: 1.8rem;
+      padding: 0 0.5rem;
+    }
+    
+    .hero-actions {
+      display: flex;
+      gap: 0.8rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn-primary {
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-mid));
+      color: var(--white);
+      font-weight: 600;
+      border: none;
+      box-shadow: 0 4px 24px var(--blue-glow);
+      transition: all var(--transition);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 0.9rem;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+    
+    .btn-secondary {
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      background: transparent;
+      color: var(--white);
+      font-weight: 600;
+      border: 1px solid var(--border);
+      transition: all var(--transition);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 0.9rem;
+    }
+    .btn-secondary:hover {
+      background: var(--blue-dim);
+      border-color: var(--blue);
+      transform: translateY(-2px);
+    }
+
+    /* Stats bar */
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1rem 1.2rem;
+      backdrop-filter: blur(12px);
+      margin-top: 2.5rem;
+      max-width: 100%;
+      flex-wrap: wrap;
+    }
+    .stat-item { 
+      text-align: center;
+      flex: 1;
+      min-width: 80px;
+    }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .stat-label {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+    }
+
+    .scroll-indicator {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.65rem;
+      margin-top: 2rem;
+    }
+    .scroll-mouse {
+      width: 22px;
+      height: 36px;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      padding-top: 5px;
+    }
+    .scroll-wheel {
+      width: 3px;
+      height: 7px;
+      background: var(--cyan);
+      border-radius: 2px;
+      animation: scrollWheel 1.5s ease-in-out infinite;
+    }
+    @keyframes scrollWheel {
+      0% { transform: translateY(0); opacity: 1; }
+      80% { transform: translateY(10px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 0; }
+    }
+
+    /* Partículas */
+    .particle {
+      position: absolute;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      border-radius: 50%;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    /* Secciones comunes */
+    .section-wrap { 
+      max-width: 100%;
+      margin: 0 auto; 
+      padding: 3rem 1.2rem; 
+    }
+    .section-tag {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--cyan);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 6vw, 3rem);
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+    .section-title .grad {
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Quiénes somos */
+    .qs-grid { 
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+    }
+    .qs-text { 
+      text-align: center;
+    }
+    .qs-text p { 
+      font-size: 0.95rem; 
+      color: var(--silver); 
+      line-height: 1.7; 
+    }
+    .qs-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.2rem;
+      width: 100%;
+    }
+    .qs-card-item {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+    .qs-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--blue-dim);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .qs-card-item strong {
+      display: block;
+      font-size: 0.9rem;
+    }
+    .qs-card-item div {
+      font-size: 0.8rem;
+      color: var(--silver);
+    }
+
+    /* Servicios */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+    .service-card {
+      background: var(--card);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      padding: 1.2rem;
+      transition: all var(--transition);
+    }
+    .service-card:hover {
+      border-color: var(--border);
+      transform: translateY(-3px);
+      box-shadow: 0 0 20px var(--blue-glow);
+    }
+    .service-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+    .service-name {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+    .service-desc {
+      font-size: 0.8rem;
+      color: var(--silver);
+      line-height: 1.5;
+    }
+
+    /* Tecnologías */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .tech-item {
+      text-align: center;
+      padding: 0.8rem;
+      background: var(--card);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+    }
+    .tech-icon {
+      font-size: 1.6rem;
+      margin-bottom: 0.3rem;
+    }
+    .tech-name {
+      font-size: 0.7rem;
+      color: var(--silver);
+    }
+
+    /* Equipo */
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .team-card {
+      background: var(--card);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+    }
+    .team-avatar {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      border-radius: 50%;
+      margin: 0 auto 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+    .team-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+    .team-role {
+      font-size: 0.75rem;
+      color: var(--cyan);
+      margin-bottom: 0.6rem;
+    }
+    .team-desc {
+      font-size: 0.8rem;
+      color: var(--silver);
+      line-height: 1.5;
+    }
+
+    /* FAQ */
+    .faq-grid {
+      margin-top: 1.5rem;
+    }
+    .faq-item {
+      background: var(--card);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      margin-bottom: 0.8rem;
+      overflow: hidden;
+    }
+    .faq-question {
+      padding: 0.9rem 1rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .faq-question:hover {
+      background: var(--blue-dim);
+    }
+    .faq-answer {
+      max-height: 0;
+      padding: 0 1rem;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      color: var(--silver);
+      line-height: 1.6;
+      font-size: 0.85rem;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding: 0 1rem 1rem 1rem;
+    }
+
+    /* Contacto */
+    .contact-grid { 
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    .contact-channels { 
+      display: flex; 
+      flex-direction: column; 
+      gap: 0.8rem; 
+    }
+    .contact-channel {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: var(--card);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      padding: 0.8rem;
+      transition: all var(--transition);
+      text-decoration: none;
+      color: var(--white);
+    }
+    .contact-channel:hover {
+      border-color: var(--border);
+      transform: translateX(5px);
+    }
+    .contact-ch-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .contact-form-wrap {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.2rem;
+    }
+    .contact-form-wrap h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+    .form-grid { 
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .form-group { 
+      display: flex; 
+      flex-direction: column; 
+      gap: 0.3rem; 
+    }
+    .form-group label { 
+      font-size: 0.7rem; 
+      color: var(--silver); 
+    }
+    .form-group input, .form-group textarea, .form-group select {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 0.6rem;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      outline: none;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 2px var(--blue-dim);
+    }
+    .form-submit {
+      width: 100%;
+      margin-top: 1rem;
+      padding: 0.7rem;
+      background: linear-gradient(135deg, var(--blue), var(--blue-mid));
+      color: var(--white);
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .form-error {
+      font-size: 0.65rem;
+      color: var(--danger);
+      display: none;
+    }
+    .form-group.error input, .form-group.error textarea { border-color: var(--danger); }
+    .form-group.error .form-error { display: block; }
+
+    /* Toast */
+    #toast-container {
+      position: fixed;
+      bottom: 5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      width: 90%;
+      text-align: center;
+    }
+    .toast {
+      padding: 0.6rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      background: rgba(37,211,102,0.2);
+      border: 1px solid rgba(37,211,102,0.3);
+      color: #7dffc0;
+    }
+    .toast.error {
+      background: rgba(255,51,102,0.2);
+      border-color: rgba(255,51,102,0.3);
+      color: #ff99b8;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--black);
+      border-top: 1px solid var(--border-light);
+      padding: 2rem 1.2rem 1.5rem;
+    }
+    .footer-content {
+      max-width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .footer-section h4 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      margin-bottom: 0.6rem;
+      color: var(--cyan);
+    }
+    .footer-section p, .footer-section a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.75rem;
+      line-height: 1.6;
+      display: block;
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border-light);
+      font-size: 0.65rem;
+      color: var(--text-muted);
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* Tablet y desktop */
+    @media (min-width: 768px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .tech-grid { grid-template-columns: repeat(3, 1fr); }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { flex-direction: row; gap: 2rem; }
+      .contact-grid > * { flex: 1; }
+      .footer-content { flex-direction: row; justify-content: space-between; }
+      .section-wrap { padding: 4rem 2rem; }
+      .qs-grid { flex-direction: row; gap: 3rem; }
+      .qs-text { flex: 1; text-align: left; }
+      .qs-visual { flex: 1; }
+      .hero-grid { max-width: 1000px; }
+      .stats-bar { max-width: 600px; margin-left: auto; margin-right: auto; }
+    }
+
+    @media (min-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(3, 1fr); }
+      .team-grid { grid-template-columns: repeat(3, 1fr); }
+      .hero-title { font-size: 5rem; }
+      .hero-slogan { font-size: 1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+    }
+
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: #03050d;
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.5s;
+    }
+    #loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    #loader div {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      background: linear-gradient(135deg,#0057ff,#00d4ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: pulse 1s alternate infinite;
+    }
+    @keyframes pulse {
+      0% { opacity: 0.6; transform: scale(0.98); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loader -->
+  <div id="loader"><div>ATI STUDIO</div></div>
+
+  <!-- Redes sociales flotantes -->
+  <div class="social-float">
+    <a href="https://www.instagram.com/studioati.pa?igsh=YzNxcmw5cmZ2ZWs3&utm_source=qr" target="_blank" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+      </svg>
+    </a>
+    <a href="https://www.tiktok.com/@ati.studiopa?_r=1&_t=ZS-95xaet2f6fN" target="_blank" aria-label="TikTok">
+      <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+      </svg>
+    </a>
+    <a href="https://www.facebook.com/share/14NS4nzw7wa/?mibextid=wwXIfr" target="_blank" aria-label="Facebook">
+      <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+      </svg>
+    </a>
+    <a href="https://wa.me/50766631007?text=Buenas%20ATI%20Studio%20%21%21%21%21%21%0AMe%20gustar%C3%ADa%20impulsar%20la%20presencia%20digital%20de%20mi%20negocio%20y%20agendar%20una%20asesor%C3%ADa%20para%20evaluar%20sus%20planes%20e%20iniciar%20un%20proyecto%20con%20ustedes" target="_blank" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 .02C5.373.02 0 5.39 0 12.02c0 2.125.549 4.123 1.512 5.865L.013 23.99l6.314-1.496c1.714.93 3.659 1.486 5.673 1.486 6.627 0 12-5.37 12-12s-5.373-12-12-12z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Navbar -->
+  <nav>
+    <button id="menu-btn" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <span class="nav-logo">ATI STUDIO</span>
+  </nav>
+
+  <div id="overlay"></div>
+
+  <!-- Drawer -->
+  <div id="drawer">
+    <div class="drawer-logo">ATI Studio</div>
+    <div class="drawer-nav">
+      <a href="#hero"><span>🏠</span> Inicio</a>
+      <a href="#quienes-somos"><span>👥</span> ¿Quiénes somos?</a>
+      <a href="#que-ofrecemos"><span>💡</span> ¿Qué ofrecemos?</a>
+      <a href="#nuestros-servicios"><span>⚡</span> Nuestros servicios</a>
+      <a href="#tecnologias"><span>🛠️</span> Tecnologías</a>
+      <a href="#nuestro-equipo"><span>🌟</span> Nuestro equipo</a>
+      <a href="#faq"><span>❓</span> FAQ</a>
+      <a href="#contactanos"><span>📩</span> Contáctanos</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    
+    <div class="hero-grid">
+      <div class="hero-content fade-in">
+        <div class="hero-eyebrow">Agencia de Marketing Digital</div>
+        <h1 class="hero-title"><span class="highlight">ATI</span><br>STUDIO</h1>
+        <div class="rotating-text">
+          Transformamos tu marca en 
+          <span class="rotating-word">🚀 líder</span>
+        </div>
+        <p class="hero-slogan">Impulsa tu presencia. Genera impacto digital.<br>Somos el equipo que transforma tu marca en una fuerza real en el mundo digital.</p>
+        <div class="hero-actions">
+          <a href="#contactanos" class="btn-primary">Agendar asesoría →</a>
+          <a href="#nuestros-servicios" class="btn-secondary">Ver servicios</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-bar fade-in">
+      <div class="stat-item"><div class="stat-num" data-target="100">0</div><div class="stat-label">% Compromiso</div></div>
+      <div class="stat-item"><div class="stat-num" data-target="5">0</div><div class="stat-label">+ Servicios</div></div>
+      <div class="stat-item"><div class="stat-num" data-target="24">0</div><div class="stat-label">Horas respuesta</div></div>
+    </div>
+
+    <div class="scroll-indicator fade-in">
+      <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+      Scroll
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Quiénes somos -->
+  <section id="quienes-somos">
+    <div class="section-wrap">
+      <div class="qs-grid">
+        <div class="qs-text fade-in">
+          <div class="section-tag">¿Quiénes somos?</div>
+          <h2 class="section-title">La agencia que <span class="grad">impulsa</span> tu marca</h2>
+          <p>Somos la agencia de marketing digital más completa, conformada por <strong>jóvenes estudiantes</strong> dispuestos a aplicar todos sus conocimientos y estrategias para ayudarte a crecer y a construir una <strong>presencia sólida y de alto impacto</strong> en el entorno digital.</p>
+        </div>
+        <div class="qs-visual fade-in">
+          <div class="qs-card">
+            <div class="qs-card-item"><div class="qs-icon">🎯</div><div><strong>Estrategia enfocada</strong><br>Cada acción tiene un propósito claro y medible.</div></div>
+            <div class="qs-card-item"><div class="qs-icon">🚀</div><div><strong>Crecimiento real</strong><br>Resultados que se traducen en más clientes y visibilidad.</div></div>
+            <div class="qs-card-item"><div class="qs-icon">🔒</div><div><strong>Presencia segura</strong><br>Tu marca protegida y posicionada en el entorno digital.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Qué ofrecemos -->
+  <section id="que-ofrecemos">
+    <div class="section-wrap">
+      <div class="fade-in">
+        <div class="section-tag">¿Qué ofrecemos?</div>
+        <h2 class="section-title">Tu marca, <span class="grad">visible</span> en todos lados</h2>
+        <p style="color:var(--silver); line-height:1.7; text-align:center;">Ofrecemos la oportunidad de hacerte visible en todos los entornos digitales, ya que hoy en día <strong>no tener presencia online es prácticamente no existir.</strong> Creamos páginas web profesionales, gestionamos redes sociales dinámicas y te conectamos con las herramientas digitales necesarias para crecer, posicionarte y competir.</p>
+        <div style="margin-top:1.5rem; background:rgba(0,87,255,0.08); border-left:3px solid var(--blue); padding:0.8rem; border-radius:8px; font-size:0.85rem;">
+          ⚠️ Si tu marca no evoluciona en el entorno digital, no solo se queda atrás frente a la competencia, sino que también <strong>pierde relevancia en los sistemas que hoy determinan qué negocios se ven… y cuáles simplemente no existen.</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Servicios -->
+  <section id="nuestros-servicios">
+    <div class="section-wrap">
+      <div class="fade-in">
+        <div class="section-tag">Nuestros servicios</div>
+        <h2 class="section-title">Todo lo que tu marca <span class="grad">necesita</span></h2>
+      </div>
+      <div class="services-grid">
+        <div class="service-card fade-in"><div class="service-icon">🌐</div><div class="service-name">Desarrollo Web</div><p class="service-desc">Páginas web profesionales, modernas y adaptadas a cualquier dispositivo, optimizadas para conversión y SEO.</p></div>
+        <div class="service-card fade-in"><div class="service-icon">🎨</div><div class="service-name">Servicios Creativos</div><p class="service-desc">Branding, identidad visual, diseño de contenido y piezas gráficas que transmiten profesionalismo.</p></div>
+        <div class="service-card fade-in"><div class="service-icon">📈</div><div class="service-name">Marketing Digital</div><p class="service-desc">Gestión de redes sociales, contenido dinámico y técnicas de posicionamiento para aumentar tu alcance.</p></div>
+        <div class="service-card fade-in"><div class="service-icon">💼</div><div class="service-name">Asesoría Digital</div><p class="service-desc">Te orientamos en herramientas digitales clave para tu negocio, combinando conocimiento técnico con visión estratégica.</p></div>
+        <div class="service-card fade-in"><div class="service-icon">🤖</div><div class="service-name">Automatizaciones</div><p class="service-desc">Automatiza tus procesos de marketing, emails, respuestas y flujos de trabajo para ahorrar tiempo y recursos.</p></div>
+        <div class="service-card fade-in"><div class="service-icon">📢</div><div class="service-name">Google Ads</div><p class="service-desc">Campañas publicitarias optimizadas en Google para atraer clientes cualificados y maximizar tu retorno de inversión.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Tecnologías -->
+  <section id="tecnologias">
+    <div class="section-wrap">
+      <div class="fade-in">
+        <div class="section-tag">Tecnologías que usamos</div>
+        <h2 class="section-title">Herramientas <span class="grad">modernas</span> para resultados reales</h2>
+      </div>
+      <div class="tech-grid">
+        <div class="tech-item fade-in"><div class="tech-icon">🌐</div><div class="tech-name">HTML5</div></div>
+        <div class="tech-item fade-in"><div class="tech-icon">🎨</div><div class="tech-name">CSS3</div></div>
+        <div class="tech-item fade-in"><div class="tech-icon">⚛️</div><div class="tech-name">React</div></div>
+        <div class="tech-item fade-in"><div class="tech-icon">🐍</div><div class="tech-name">Python</div></div>
+        <div class="tech-item fade-in"><div class="tech-icon">🗄️</div><div class="tech-name">SQL</div></div>
+        <div class="tech-item fade-in"><div class="tech-icon">📱</div><div class="tech-name">Flutter</div></div>
+        <div class="tech-item fade-in"><div class="tech-icon">📊</div><div class="tech-name">Google Analytics</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Nuestro equipo -->
+  <section id="nuestro-equipo">
+    <div class="section-wrap">
+      <div class="fade-in">
+        <div class="section-tag">Nuestro equipo</div>
+        <h2 class="section-title">Los <span class="grad">jóvenes talentos</span> detrás de ATI</h2>
+        <p style="color:var(--silver); text-align:center; max-width:700px; margin:0 auto 1.5rem; font-size:0.9rem;">Somos estudiantes apasionados por la tecnología y el marketing digital, listos para llevar tu marca al siguiente nivel.</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-card fade-in">
+          <div class="team-avatar">👨‍💻</div>
+          <div class="team-name">José Aronategui</div>
+          <div class="team-role">CEO & Fundador</div>
+          <div class="team-desc">Joven emprendedor con visión creativa e innovadora, al frente de un proyecto en crecimiento dentro del marketing digital. En constante formación y evolución para entregar estrategias efectivas a cada cliente.</div>
+        </div>
+        <div class="team-card fade-in">
+          <div class="team-avatar">🎨</div>
+          <div class="team-name">Roberto Chamorro</div>
+          <div class="team-role">Director de Arte y Branding</div>
+          <div class="team-desc">Especialista en diseño visual y desarrollo de identidad de marca, enfocado en la construcción de sistemas visuales sólidos que fortalecen la percepción de las marcas.</div>
+        </div>
+        <div class="team-card fade-in">
+          <div class="team-avatar">📊</div>
+          <div class="team-name">Adrian Anderson</div>
+          <div class="team-role">Estratega Digital</div>
+          <div class="team-desc">Apasionado por las tendencias digitales y la creación de contenido. Manejo de redes sociales, community management y estrategias de crecimiento orgánico para marcas emergentes. Enfocado en desarrollar presencia digital auténtica y conexiones reales con audiencias.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="section-wrap">
+      <div class="fade-in">
+        <div class="section-tag">Preguntas frecuentes</div>
+        <h2 class="section-title">Resolvemos tus <span class="grad">dudas</span></h2>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item fade-in">
+          <div class="faq-question">¿Qué incluye una asesoría inicial? <span class="faq-icon">+</span></div>
+          <div class="faq-answer">La asesoría inicial incluye un diagnóstico gratuito de tu presencia digital, análisis de competencia, y una propuesta personalizada con los servicios que mejor se adaptan a tus necesidades y presupuesto.</div>
+        </div>
+        <div class="faq-item fade-in">
+          <div class="faq-question">¿Trabajan con empresas fuera de Panamá? <span class="faq-icon">+</span></div>
+          <div class="faq-answer">¡Sí! Trabajamos de forma remota con clientes de toda Latinoamérica y EE. UU. Todo se gestiona online con reuniones por Zoom o Google Meet.</div>
+        </div>
+        <div class="faq-item fade-in">
+          <div class="faq-question">¿Ofrecen mantenimiento continuo? <span class="faq-icon">+</span></div>
+          <div class="faq-answer">Sí, todos nuestros servicios incluyen soporte continuo y podemos adaptarnos a tus necesidades con planes mensuales flexibles.</div>
+        </div>
+        <div class="faq-item fade-in">
+          <div class="faq-question">¿Cómo puedo contratar sus servicios? <span class="faq-icon">+</span></div>
+          <div class="faq-answer">Solo contáctanos a través del formulario, WhatsApp o redes sociales. Te haremos una asesoría gratuita y te presentaremos un plan personalizado.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Contacto -->
+  <section id="contactanos">
+    <div class="section-wrap">
+      <div class="fade-in">
+        <div class="section-tag">Contáctanos</div>
+        <h2 class="section-title">Hablemos de tu <span class="grad">proyecto</span></h2>
+      </div>
+      <div class="contact-grid">
+        <div class="fade-in">
+          <div class="contact-channels">
+            <a href="https://www.instagram.com/studioati.pa?igsh=YzNxcmw5cmZ2ZWs3&utm_source=qr" target="_blank" class="contact-channel"><div class="contact-ch-icon" style="background:linear-gradient(135deg,#e1306c,#405de6)">📸</div><div><div style="font-size:0.65rem;color:var(--text-muted)">Instagram</div><div style="font-size:0.85rem;">@studioati.pa</div></div><span style="margin-left:auto">→</span></a>
+            <a href="https://www.facebook.com/share/14NS4nzw7wa/?mibextid=wwXIfr" target="_blank" class="contact-channel"><div class="contact-ch-icon" style="background:#1877f2">📘</div><div><div style="font-size:0.65rem;color:var(--text-muted)">Facebook</div><div style="font-size:0.85rem;">ATI Studio</div></div><span style="margin-left:auto">→</span></a>
+            <a href="https://www.tiktok.com/@ati.studiopa?_r=1&_t=ZS-95xaet2f6fN" target="_blank" class="contact-channel"><div class="contact-ch-icon" style="background:#000">🎵</div><div><div style="font-size:0.65rem;color:var(--text-muted)">TikTok</div><div style="font-size:0.85rem;">@ati.studiopa</div></div><span style="margin-left:auto">→</span></a>
+            <a href="https://wa.me/50766631007?text=Buenas%20ATI%20Studio%20%21%21%21%21%21%0AMe%20gustar%C3%ADa%20impulsar%20la%20presencia%20digital%20de%20mi%20negocio%20y%20agendar%20una%20asesor%C3%ADa%20para%20evaluar%20sus%20planes%20e%20iniciar%20un%20proyecto%20con%20ustedes" target="_blank" class="contact-channel"><div class="contact-ch-icon" style="background:#25D366">💬</div><div><div style="font-size:0.65rem;color:var(--text-muted)">WhatsApp</div><div style="font-size:0.85rem;">+507 6663-1007</div></div><span style="margin-left:auto">→</span></a>
+            <a href="mailto:ati.studiopa@gmail.com" class="contact-channel"><div class="contact-ch-icon" style="background:var(--blue-dim)">✉️</div><div><div style="font-size:0.65rem;color:var(--text-muted)">Correo</div><div style="font-size:0.85rem;">ati.studiopa@gmail.com</div></div><span style="margin-left:auto">→</span></a>
+          </div>
+        </div>
+
+        <!-- Formulario -->
+        <div class="contact-form-wrap fade-in">
+          <h3>📋 Cuéntanos sobre tu proyecto</h3>
+          <form id="contact-form" action="https://formspree.io/f/mwvayrwb" method="POST" novalidate>
+            <input type="hidden" name="_subject" value="Nuevo contacto desde ATI Studio Web">
+            <div class="form-grid">
+              <div class="form-group" id="fg-name"><label>Nombre *</label><input type="text" id="f-name" name="nombre" required><span class="form-error">Ingresa tu nombre</span></div>
+              <div class="form-group" id="fg-email"><label>Correo *</label><input type="email" id="f-email" name="email" required><span class="form-error">Correo válido requerido</span></div>
+              <div class="form-group" id="fg-phone"><label>Teléfono</label><input type="tel" id="f-phone" name="telefono" placeholder="+507 0000-0000"></div>
+              <div class="form-group" id="fg-budget"><label>Presupuesto</label><select id="f-budget" name="presupuesto"><option value="">Seleccionar...</option><option>Menos de $200</option><option>$200 – $500</option><option>$500 – $1,000</option><option>Más de $1,000</option></select></div>
+              <div class="form-group full" id="fg-msg"><label>Mensaje *</label><textarea id="f-msg" name="message" rows="3" required></textarea><span class="form-error">Escribe tu mensaje</span></div>
+            </div>
+            <button type="submit" class="form-submit" id="form-submit-btn">Enviar mensaje →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>ATI Studio</h4>
+        <p>Impulsa tu presencia. Genera impacto digital.</p>
+        <p>Panamá · Marketing Digital</p>
+      </div>
+      <div class="footer-section">
+        <h4>Enlaces rápidos</h4>
+        <a href="#quienes-somos">¿Quiénes somos?</a>
+        <a href="#nuestros-servicios">Servicios</a>
+        <a href="#nuestro-equipo">Nuestro equipo</a>
+        <a href="#contactanos">Contacto</a>
+      </div>
+      <div class="footer-section">
+        <h4>Contacto</h4>
+        <p>📧 ati.studiopa@gmail.com</p>
+        <p>📱 +507 6663-1007</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 ATI Studio — Todos los derechos reservados
+    </div>
+  </footer>
+
+  <div id="toast-container"></div>
+
+  <script>
+    // Loader
+    window.addEventListener('load', () => setTimeout(() => document.getElementById('loader').classList.add('hidden'), 300));
+
+    // Menú hamburguesa
+    const menuBtn = document.getElementById('menu-btn');
+    const drawer = document.getElementById('drawer');
+    const overlay = document.getElementById('overlay');
+
+    function toggleMenu() {
+      const isOpen = drawer.classList.toggle('open');
+      overlay.classList.toggle('active', isOpen);
+      menuBtn.classList.toggle('open', isOpen);
+    }
+    function closeMenu() {
+      drawer.classList.remove('open');
+      overlay.classList.remove('active');
+      menuBtn.classList.remove('open');
+    }
+    menuBtn.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', closeMenu);
+    document.querySelectorAll('.drawer-nav a').forEach(a => a.addEventListener('click', closeMenu));
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+          closeMenu();
+        }
+      });
+    });
+
+    // Fade-in observer
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Contadores animados
+    const counterObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const el = e.target;
+          const target = parseInt(el.dataset.target);
+          let current = 0;
+          const duration = 1500;
+          const stepTime = 20;
+          const steps = duration / stepTime;
+          const increment = target / steps;
+          const interval = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              el.innerText = target;
+              clearInterval(interval);
+            } else {
+              el.innerText = Math.floor(current);
+            }
+          }, stepTime);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.stat-num[data-target]').forEach(el => counterObserver.observe(el));
+
+    // Toast
+    function showToast(msg, type = 'success') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const t = document.createElement('div');
+      t.className = `toast ${type}`;
+      t.innerHTML = `<span>${type === 'success' ? '✅' : '❌'}</span> ${msg}`;
+      container.appendChild(t);
+      setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 500); }, 3000);
+    }
+
+    // Formulario
+    const form = document.getElementById('contact-form');
+    if (form) {
+      form.addEventListener('submit', async e => {
+        e.preventDefault();
+        let valid = true;
+        const name = document.getElementById('f-name'), email = document.getElementById('f-email'), msg = document.getElementById('f-msg');
+        const fgName = document.getElementById('fg-name'), fgEmail = document.getElementById('fg-email'), fgMsg = document.getElementById('fg-msg');
+        const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!name.value.trim()) { fgName.classList.add('error'); valid = false; } else fgName.classList.remove('error');
+        if (!emailRe.test(email.value.trim())) { fgEmail.classList.add('error'); valid = false; } else fgEmail.classList.remove('error');
+        if (!msg.value.trim()) { fgMsg.classList.add('error'); valid = false; } else fgMsg.classList.remove('error');
+        if (!valid) return showToast('Completa los campos requeridos.', 'error');
+
+        const btn = document.getElementById('form-submit-btn');
+        btn.disabled = true; btn.textContent = 'Enviando...';
+
+        try {
+          const fd = new FormData(form);
+          const res = await fetch(form.action, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } });
+          if (res.ok) {
+            showToast('✅ Mensaje enviado correctamente. Te contactaremos pronto.', 'success');
+            form.reset();
+            document.querySelectorAll('.form-group').forEach(g => g.classList.remove('error'));
+          } else {
+            showToast('❌ Error al enviar. Intenta de nuevo.', 'error');
+          }
+        } catch (error) {
+          showToast('❌ Error de conexión. Revisa tu internet.', 'error');
+        }
+        btn.disabled = false; btn.textContent = 'Enviar mensaje →';
+      });
+
+      form.querySelectorAll('input, textarea, select').forEach(el => {
+        el.addEventListener('input', () => el.closest('.form-group')?.classList.remove('error'));
+      });
+    }
+
+    // FAQ Acordeón
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const question = item.querySelector('.faq-question');
+      question.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+    });
+
+    // Partículas
+    function createParticles() {
+      const hero = document.getElementById('hero');
+      if (!hero) return;
+      for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        const size = Math.random() * 3 + 2;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.position = 'absolute';
+        particle.style.bottom = '0';
+        particle.style.animation = `floatParticle ${Math.random() * 8 + 5}s linear infinite`;
+        particle.style.animationDelay = `${Math.random() * 5}s`;
+        hero.appendChild(particle);
+      }
+    }
+    createParticles();
+
+    // Animación partículas
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes floatParticle {
+        0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+        10% { opacity: 0.6; }
+        90% { opacity: 0.6; }
+        100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Texto rotativo
+    const words = ['🚀 líder', '💡 innovadora', '📈 rentable', '🌟 única', '⚡ imparable'];
+    let index = 0;
+    const rotatingWord = document.querySelector('.rotating-word');
+    if (rotatingWord) {
+      setInterval(() => {
+        index = (index + 1) % words.length;
+        rotatingWord.style.animation = 'none';
+        rotatingWord.offsetHeight;
+        rotatingWord.style.animation = 'fadeInOut 6s infinite';
+        rotatingWord.textContent = words[index];
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
